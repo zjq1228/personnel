@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
- * 部门表
+ * 部门表111
  */
 @Data
 public class Department {
