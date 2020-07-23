@@ -15,6 +15,7 @@ public class MyInterceptor implements HandlerInterceptor {
 	 * false为中断执行 
 	 * true为允许通过
 	 */
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
 		System.out.println("进入方法前执行");
