@@ -97,4 +97,27 @@ public class BaseDataController {
             }
         }
     }
+
+    /**
+     * 增加
+     *
+     */
+    @RequestMapping("add")
+    public Map<String, Object> add(BaseData baseData) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            baseDataService.addBase(baseData);
+            map.put("code", "200");
+            return map;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            map.put("code", "400");
+            map.put("msg", "服务器异常 请稍后");
+            return map;
+        }
+
+    }
+
+
 }
