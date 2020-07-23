@@ -1,3 +1,28 @@
+# ��������
+server:
+  port: 8080 # �˿�
+  servlet:
+    jsp:
+      init-parameters:
+        development: true # ����JSP����ģʽ���޸�JSP��������
+    context-path: / # ������·��
+
+# ����Դ����
 spring:
-  profiles:
-    active: wpy
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/dj_hanjia?characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false
+  mvc:
+    view:
+      prefix: /WEB-INF/page # ҳ��ǰ׺
+      suffix: .jsp # ҳ���׺
+    static-path-pattern: /** #��̬��Դ����
+
+# Mybatis-Plus ����
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml # Mapper XML ɨ��·��
+  type-aliases-package: com.dj.personnel.pojo # �����
+  configuration:
+    map-underscore-to-camel-case: true

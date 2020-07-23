@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,3 +25,21 @@ $(function(){
 	<div id="dateTime" align="right"></div>
 </body>
 </html>
+=======
+<%--
+  Created by IntelliJ IDEA.
+  User: dj
+  Date: 2020/7/23
+  Time: 9:42
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+    <a href="/user/out"><h1 style="color:#0037ff">退出登录</h1></a>
+</body>
+</html>
+>>>>>>> zxh-fz1
