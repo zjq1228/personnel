@@ -33,6 +33,7 @@
                     var parentHtml = "";
                     for (var i = 0; i < parentIdBM.length; i++){
                         var parentOne= parentIdBM[i];
+                        parentHtml += " <option>请选择</option>"
                         parentHtml += " <option value='"+parentOne.id+"'>"+parentOne.baseName+"</option>"
 
                     }
@@ -54,7 +55,6 @@
                         for (var i = 0; i < parentIdBM.length; i++){
                             var parentOne= parentIdBM[i];
                             parentHtml += " <option value='"+parentOne.id+"'>"+parentOne.baseName+"</option>"
-
                         }
                         $("#rs").html(parentHtml);
                     }
@@ -79,15 +79,26 @@
             </tr>
             <tr>
                 <td>状态</td>
-                <td><input type="text" name="status" value="1"></td>
+                <td><input type="radio" name="status" value="1" checked="checked">有效</td>
+            </tr>
+            <tr>
+                <td>手机号码</td>
+                <td><input type="text" name="userPhone"></td>
+            </tr>
+            <tr>
+                <td>身份证号码</td>
+                <td><input type="text" name="idCard"></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="userLevel" value="3"></td>
             </tr>
             <tr>
                 <td>选择部门及上级</td>
-                <td> 部门<select id = "bm" onchange="level2(this.value)"></select>
-                     人事<select id = "rs" onchange="level3(this.value)"></select></td>
+                <td> 部门<select id = "bm" onchange="level2(this.value)">
+                </select>
+                     人事<select id = "rs" onchange="level3(this.value)">
+                        <option>请选择</option>
+                    </select></td>
                 <td><input type="hidden" name="pId" id="num"></td>
             </tr>
             <tr>

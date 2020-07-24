@@ -2,19 +2,20 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dj.personnel.mapper.UserMapper">
     <sql id="USER_COUNT">
-        id,p_id,username,realname,password,status,create_time,user_level
+        id,p_id,username,password,status,create_time,user_level,user_phone,id_card
 
     </sql>
     <select id="findLevelShow" resultType="com.dj.personnel.pojo.User">
         SELECT
             u.id,
             u.username,
-            u.realname,
             u. PASSWORD,
             u. STATUS,
             u.create_time,
             u.user_level,
             u.p_id,
+            u.user_phone,
+            u.id_card,
          b.parent_id,
          b.base_name
         FROM

@@ -26,6 +26,8 @@
                         html += "<td>"+user.password+"</td>";
                         html += "<td>"+user.status+"</td>";
                         html += "<td>"+user.createTime+"</td>";
+                        html += "<td>"+user.userPhone+"</td>";
+                        html += "<td>"+user.idCard+"</td>";
                         html += "</tr>";
                     }
                     $("#tbd").html(html);
@@ -49,6 +51,8 @@
             <td>密码</td>
             <td>状态</td>
             <td>注册时间</td>
+            <td>手机号码</td>
+            <td>身份证号码</td>
         </tr>
         <tbody id="tbd"></tbody>
     </table>

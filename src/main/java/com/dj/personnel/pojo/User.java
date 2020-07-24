@@ -55,4 +55,13 @@ public class User {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
 
+    /**
+     * 手机号
+     */
+    private String userPhone;
+
+    /**
+     * 身份证号码
+     */
+    private String idCard;
 }
