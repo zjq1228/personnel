@@ -38,7 +38,7 @@ public class UserPageController {
      */
     @RequestMapping("toAdd")
     public String toAdd(){
-        return "user/add";
+        return "/user/add";
     }
 
 

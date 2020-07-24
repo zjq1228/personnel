@@ -9,12 +9,12 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $.post(
                 "/user/show",
-                "",
+                {"id" : '${user.id}'},
                 function (result) {
                     var users = result.data;
                     var html = "";

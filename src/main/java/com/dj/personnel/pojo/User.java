@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -27,9 +28,9 @@ public class User {
     private Integer pId;
 
     /**
-     * 用户等级（boss是 -1，管理员是0，普通员工是“”）
+     * 用户等级（boss是 1，管理员是2，普通员工是“3”）
      */
-    private Integer userLever;
+    private Integer userLevel;
 
     /**
      * 登录名称
@@ -51,5 +52,7 @@ public class User {
      *注册时间
      */
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;
+
 }

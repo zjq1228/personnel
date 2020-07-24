@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/static/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript">
         //判断当前窗口路径与加载路径是否一致。
         if(window.top.document.URL != document.URL){
@@ -18,8 +18,8 @@
         }
          function  login() {
                $.post(
-                    "/user/login",
-                     $("frm").serialize(),
+                    "<%=request.getContextPath()%>/user/login",
+                     $("#frm").serialize(),
                      function (result) {
                         alert(result.code);
                         if(result.code == 200) {
