@@ -1,5 +1,6 @@
 package com.dj.personnel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.print.Book;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,21 +31,21 @@ public class DepartmentController {
     @RequestMapping("show")
     public ResultModel<Object> list(Department department, Integer pageNo) {
         Map<String, Object> map = new HashMap<>();
-        try {
-            IPage<Department> page = new Page<>(pageNo, 5);
-            QueryWrapper<Department> queryWrapper = new QueryWrapper<>();
-            if (!StringUtils.isEmpty(department.getName())){
-
-                queryWrapper.like("name", department.getName());
-            }
-            IPage<Department> pageInfo = departmentService.page(page, queryWrapper);
-            map.put("pages", pageInfo.getPages());
-            map.put("list", pageInfo.getRecords());
-            return new ResultModel().success(map);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultModel<>().error("服务器异常");
+      try {
+        IPage<Department> page = new Page<>(pageNo, 5);
+        QueryWrapper<Department> queryWrapper = new QueryWrapper<>();
+        if (!StringUtils.isEmpty(department.getName()) ){
+            queryWrapper.like("name", department.getName());
         }
+        queryWrapper.eq("is_del", 1);
+        IPage<Department> pageInfo = departmentService.page(page, queryWrapper);
+        map.put("pages", pageInfo.getPages());
+        map.put("list", pageInfo.getRecords());
+        return new ResultModel().success(map);
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ResultModel<>().error("服务器异常");
+    }
     }
 
     @RequestMapping("updateIsDel")

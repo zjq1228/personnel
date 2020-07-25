@@ -22,6 +22,25 @@
                 })
         }
     </script>
+
+    @RequestMapping("show")
+    public ResultModel<Object> list(Department department, Integer pageNo) {
+    Map<String, Object> map = new HashMap<>();
+    try {
+    IPage<Department> page = new Page<>(pageNo, 5);
+        QueryWrapper<Department> queryWrapper = new QueryWrapper<>();
+            if (!StringUtils.isEmpty(department.getName())) {
+            queryWrapper.like("name", department.getName());
+            }
+            IPage<Department> pageInfo = departmentService.page(page, queryWrapper);
+                map.put("pages", pageInfo.getPages());
+                map.put("list", pageInfo.getRecords());
+                return new ResultModel().success(map);
+                } catch (Exception e) {
+                e.printStackTrace();
+                return new ResultModel<>().error("服务器异常");
+                }
+                }
 </head>
 <body style="text-align:center">
 <form id="fm">

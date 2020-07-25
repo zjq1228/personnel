@@ -34,7 +34,7 @@
 
         function show() {
             $.post("<%=request.getContextPath() %>/department/show",
-                {"isDel":1,"pageNo":$("#pageNo").val()},
+                $("#fm").serialize(),
                 function (data) {
                     if (data.code != 200) {
                         alert(data.msg);
@@ -46,7 +46,6 @@
                         var department = data.data.list[i];
                         html += "<tr>"
                         html += "<td><input type = 'checkbox' name = 'ids' value = '" + department.id + "'/></td>"
-                        html += "<td>" + department.id + "</td>"
                         html += "<td>" + department.name + "</td>"
                         html += "<td>" + department.remark + "</td>"
                         html += "</tr>";
@@ -97,18 +96,21 @@
     </script>
 </head>
 <body align="center">
-<input type = "hidden" id = "ids" />
-<input type = "button" value = "删除" onclick = "del()"/>
-<input type = "button" value = "添加" onclick = "add()"/>
+
 <form id="fm" align="center">
+
     <input type="hidden" name="pageNo" id="pageNo" value="1">
+    <input type="hidden" name="isDel" value="1">
     部门查询：<input type="text" name="name"/>
     <input type="button" value="查询" onclick="search()"/><br/>
+    <input type = "reset" value = "清空" />
+    <input type = "hidden" id = "ids" />
+    <input type = "button" value = "删除" onclick = "del()"/>
+    <input type = "button" value = "添加" onclick = "add()"/>
 </form>
 <table align="center">
     <tr>
         <th></th>
-        <th>id</th>
         <th>部门名称</th>
         <th>详细描述</th>
     </tr>
