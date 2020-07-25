@@ -9,6 +9,7 @@
 <body style="text-align: center"  bgcolor="#CCDDFF">
 <br/><br/><br/><br/><br/><br/>
 	<a href="<%=request.getContextPath()%>/user/toShow" target="right">用户</a><p>
+	<a href="<%=request.getContextPath()%>/department/toShow" target="right">部门管理</a><p>
 
 
 	
