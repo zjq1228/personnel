@@ -11,6 +11,7 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>\res\css\jq22-demo.css">
     <script type="text/javascript">
         $(function () {
             $.post(
@@ -70,5 +71,9 @@
         </tr>
         <tbody id="tbd"></tbody>
     </table>
+
+
+    <span class="container"></span>
+    <script src="<%=request.getContextPath()%>\res\js\snowflakeCursor.js" type="text/javascript"></script>
 </body>
 </html>
