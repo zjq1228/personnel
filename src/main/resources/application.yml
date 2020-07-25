@@ -1,13 +1,13 @@
-# ·şÎñÉèÖÃ
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 server:
-  port: 8080 # ¶Ë¿Ú
+  port: 8080 # ï¿½Ë¿ï¿½
   servlet:
     jsp:
       init-parameters:
-        development: true # ¿ªÆôJSPµ÷ÊÔÄ£Ê½£¬ĞŞ¸ÄJSPÎŞĞèÖØÆô
-    context-path: / # ÉÏÏÂÎÄÂ·¾¶
+        development: true # ï¿½ï¿½ï¿½ï¿½JSPï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½Ş¸ï¿½JSPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    context-path: / # ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 
-# Êı¾İÔ´ÅäÖÃ
+# ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -16,13 +16,13 @@ spring:
     url: jdbc:mysql://localhost:3306/dj_hanjia?characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&useSSL=false
   mvc:
     view:
-      prefix: /WEB-INF/page # Ò³ÃæÇ°×º
-      suffix: .jsp # Ò³Ãæºó×º
-    static-path-pattern: /** #¾²Ì¬×ÊÔ´¼ÓÔØ
+      prefix: /WEB-INF/page # Ò³ï¿½ï¿½Ç°×º
+      suffix: .jsp # Ò³ï¿½ï¿½ï¿½×º
+    static-path-pattern: /** #ï¿½ï¿½Ì¬ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
 
-# Mybatis-Plus ÅäÖÃ
+# Mybatis-Plus ï¿½ï¿½ï¿½ï¿½
 mybatis-plus:
-  mapper-locations: classpath:mapper/**/*.xml # Mapper XML É¨°üÂ·¾¶
-  type-aliases-package: com.dj.personnel.pojo # Àà±ğÃû
+  mapper-locations: classpath:mapper/**/*.xml # Mapper XML É¨ï¿½ï¿½Â·ï¿½ï¿½
+  type-aliases-package: com.dj.personnel.pojo # ï¿½ï¿½ï¿½ï¿½ï¿½
   configuration:
     map-underscore-to-camel-case: true
