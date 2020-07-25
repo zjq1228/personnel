@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dj.personnel.mapper.UserMapper">
+    <sql id="USER_COUNT">
+        id,p_id,username,password,status,create_time,user_level,user_phone,id_card
+    </sql>
 
+    <select id="findLevelShow" resultType="com.dj.personnel.pojo.User">
+        SELECT
+            u.id,
+            u.username,
+            u. PASSWORD,
+            u. STATUS,
+            u.create_time,
+            u.user_level,
+            u.p_id,
+            u.user_phone,
+            u.id_card,
+         b.parent_id,
+         b.base_name
+        FROM
+            USER u
+        LEFT JOIN base b ON u.p_id = b.id
+        <where>
+            1 = 1
+            <if test="userLevel == 2">
+              and b.parent_id= #{pId}
+            </if>
+            <if test="userLevel == 3">
+              and u.id= #{id}
+            </if>
+
+        </where>
+
+
+
+    </select>
+
+    <select id="findUserByNameAndPwd" resultType="com.dj.personnel.pojo.User">
+        select <include refid="USER_COUNT"/> from user where username = #{username} and password = #{password}
+    </select>
 </mapper>
