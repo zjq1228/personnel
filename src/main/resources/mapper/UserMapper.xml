@@ -3,8 +3,8 @@
 <mapper namespace="com.dj.personnel.mapper.UserMapper">
     <sql id="USER_COUNT">
         id,p_id,username,password,status,create_time,user_level,user_phone,id_card
-
     </sql>
+
     <select id="findLevelShow" resultType="com.dj.personnel.pojo.User">
         SELECT
             u.id,
@@ -27,8 +27,9 @@
               and b.parent_id= #{pId}
             </if>
             <if test="userLevel == 3">
-                and u.id= #{id}
+              and u.id= #{id}
             </if>
+
         </where>
 
 

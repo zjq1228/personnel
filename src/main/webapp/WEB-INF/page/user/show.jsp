@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
@@ -42,7 +43,20 @@
 </head>
 <body>
     <form id="frm">
-        <input type="button" value="添加" onclick="add()">
+        <input type="button" value="添加" onclick="add()"><br/><br/>
+        <c:if test="${user.userLevel == 1}">
+            手机号查询<input type="text" name="userPhone"><br/>
+            姓名&#12288查询<input type="text" name="username"><br/>
+            职位&#12288查询<select>
+            <option>总经理</option>
+            <option>经理</option>
+            <option>主管</option>
+            <option>员工</option>
+            </select><br/>
+            身份证号码<input type="text" name="idCard"><br/>
+            所在&#12288部门<input type="text" name="idCard"><br/>
+        </c:if>
+
     </form>
     <table>
         <tr>

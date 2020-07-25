@@ -79,6 +79,9 @@ public class UserController {
     public ResultModel show(@SessionAttribute("user")User user) {
         try {
             List<User> list = userService.findLevelShow(user);
+            for (User user1 : list){
+                System.out.println(user1);
+            }
             return new ResultModel().success(list);
         } catch (Exception e) {
             return new ResultModel().error(e.getMessage());
