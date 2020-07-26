@@ -17,7 +17,7 @@ public class MyInterceptor implements HandlerInterceptor {
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
-		System.out.println("进入方法前执行");
+
 		// 登录上有缓存，没登录跳别的页面是没缓存的
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
