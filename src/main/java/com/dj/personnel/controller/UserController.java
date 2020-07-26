@@ -76,10 +76,10 @@ public class UserController {
      * @return
      */
     @RequestMapping("show")
-    public ResultModel show(User user1, Integer id) {
+    public ResultModel show(User user1, Integer id, Integer[] ids) {
         try {
             User user = userService.getById(id);
-            List<User> list = userService.findLevelShow(user, user1);
+            List<User> list = userService.findLevelShow(user, user1, ids);
             return new ResultModel().success(list);
         } catch (Exception e) {
             return new ResultModel().error(e.getMessage());
@@ -103,6 +103,23 @@ public class UserController {
             baseData.setParentId(user.getPId());
             baseData.setBaseName(user.getUsername());
             baseDataService.addBase(baseData);
+            return new ResultModel().success("成功");
+        } catch (Exception e) {
+            return new ResultModel().error(e.getMessage());
+        }
+
+    }
+
+    /**
+     * 修改
+     * 同时添加进基础数据表内
+     * @param user
+     * @return
+     */
+    @RequestMapping("updateUser")
+    public ResultModel updateUser(User user) {
+        try {
+            userService.updateById(user);
             return new ResultModel().success("成功");
         } catch (Exception e) {
             return new ResultModel().error(e.getMessage());

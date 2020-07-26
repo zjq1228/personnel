@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
 
-    List<User> findLevelShow(@Param("user") User user, @Param("user1")User user1) throws DataAccessException;
+    List<User> findLevelShow(@Param("user") User user, @Param("user1")User user1, @Param("ids")Integer[] ids) throws DataAccessException;
 
     User findUserByNameAndPwd(User user) throws DataAccessException;
 }

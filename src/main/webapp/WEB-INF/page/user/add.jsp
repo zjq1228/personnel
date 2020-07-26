@@ -11,13 +11,26 @@
     <title>Title</title>
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>\res\css\jq22-demo.css">
+    <script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer/layer.js"></script>
     <script type="text/javascript">
         function add() {
+            var index = layer.load(2, {shade: 0.3});
             $.post(
                 "<%=request.getContextPath()%>/user/addUser",
                 $("#frm").serialize(),
                 function (result) {
-                    window.location.href = "/user/toShow";
+                    layer.close(index);
+                    if(result.code != "200"){
+                        parent.layer.msg(data.msg, {icon: 5});
+                        return;
+                    }
+                    layer.msg('增加成功', {
+                        icon: 6,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        location.reload();
+                        return;
+                    });
                 }
             );
         }
@@ -27,7 +40,7 @@
          */
         $(function(){
             $.post("<%=request.getContextPath()%>/user/getParent",
-                {"parentId" : 4},
+                {"parentId" : 0},
                 function (data) {
                 if(data.code == 200){
                     var parentIdBM = data.data;

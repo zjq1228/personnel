@@ -69,5 +69,4 @@ public class User {
      */
     private Integer province;
 
-    private Integer[] ids;
 }

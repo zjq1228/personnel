@@ -15,8 +15,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private UserMapper userMapper;
     @Override
-    public List<User> findLevelShow(@Param("user") User user, @Param("user1")User user1) throws Exception {
-        return userMapper.findLevelShow(user, user1);
+    public List<User> findLevelShow(User user, User user1, Integer[] ids) throws Exception {
+        return userMapper.findLevelShow(user, user1, ids);
     }
 
     @Override

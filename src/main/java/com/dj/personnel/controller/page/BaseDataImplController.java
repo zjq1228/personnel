@@ -16,5 +16,11 @@ public class BaseDataImplController {
         return "/ztree/ztree_show";
     }
 
+    @RequestMapping("toAdd")
+    public String toAdd(Integer parentId, Model model) throws Exception {
+        model.addAttribute("parentId" ,parentId);
+        return "/ztree/add_base";
+    }
+
 
 }

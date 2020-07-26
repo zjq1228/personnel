@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService extends IService<User> {
 
-    List<User> findLevelShow(@Param("user") User user, @Param("user1")User user1) throws Exception;
+    List<User> findLevelShow(User user, User user1, Integer[] ids) throws Exception;
 
     User findUserByNameAndPwd(User user) throws Exception;
 

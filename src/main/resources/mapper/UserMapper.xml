@@ -37,14 +37,17 @@
             <if test="user1.userPhone!=null and user1.userPhone!=''">
                 and u.user_phone = #{user1.userPhone}
             </if>
-            <if test="user1.userLevel!=null">
+            <if test="user1.userLevel!=null and user1.userLevel!=0">
                 and u.user_level = #{user1.userLevel}
             </if>
             <if test="user1.idCard!=null and user1.idCard!=''">
                 and u.id_card = #{user1.idCard}
             </if>
-            <if test="user1.province!=null and user1.province!=''">
-                and u.province = #{user1.province}
+            <if test="user1.province!=null">
+                and u.province in
+                <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
             </if>
 
         </where>

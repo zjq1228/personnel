@@ -12,6 +12,7 @@
     <title>Title</title>
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>\res\css\jq22-demo.css">
+    <script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer/layer.js"></script>
     <script type="text/javascript">
 
         var province = null;
@@ -24,14 +25,25 @@
             return pid;
         }
 
+        var proId = null;
+        function count() {
+            proId= $('input[name="proId"]:checked');
+            var pid=[];
+            $.each(proId,function(){
+                pid.push($(this).val());
+            })
+            $("#findById").val(pid);
+            return pid;
+        }
+
         $(function () {
            show();
         })
 
        function show(){
+           $("#ids").val(selec())
            $.post(
                "/user/show?id="+${user.id},
-
                $("#fm").serialize(),
                function (result) {
                    var users = result.data;
@@ -39,13 +51,15 @@
                    for (var i=0;i<users.length;i++){
                        var user = users[i];
                        html += "<tr>";
-                       html += "<td>"+user.id+"</td>";
-                       html += "<td>"+user.username+"</td>";
-                       html += "<td>"+user.password+"</td>";
-                       html += "<td>"+user.status+"</td>";
-                       html += "<td>"+user.createTime+"</td>";
-                       html += "<td>"+user.userPhone+"</td>";
-                       html += "<td>"+user.idCard+"</td>";
+
+                       html += "<td><input type='checkbox' name='proId' value='"+user.id+"'/></td>";
+
+                       html += "<td><font color=\"#ffd700\">"+user.username+"</font></td>";
+                       html += "<td><font color=\"#ffd700\">"+user.password+"</font></td>";
+                       html += "<td><font color=\"#ffd700\">"+user.status+"</font></td>";
+                       html += "<td><font color=\"#ffd700\">"+user.createTime+"</font></td>";
+                       html += "<td><font color=\"#ffd700\">"+user.userPhone+"</font></td>";
+                       html += "<td><font color=\"#ffd700\">"+user.idCard+"</font></td>";
                        html += "</tr>";
                    }
                    $("#tbd").html(html);
@@ -53,41 +67,57 @@
 
        };
 
-
+        function updateUser(){
+            var checkBox = count();
+            if(checkBox.length != 1){
+                alert("必须选中一个修改")
+                return;
+            }
+            layer.open({
+                type: 2,
+                title: '修改个人信息',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['380px', '90%'],
+                content: '<%=request.getContextPath()%>/user/toUpdate?id='+checkBox[0] //iframe的url
+            });
+        }
 
     </script>
 </head>
 <body>
     <form id="fm">
         <input type="hidden" name="id" value="${user.id}">
-        <input type="hidden" name="ids" value="">
+        <input type="hidden" id="ids" name="ids">
         <c:if test="${user.userLevel == 1}">
-            手机号查询<input type="text" name="userPhone"><br/>
-            姓名&#12288查询<input type="text" name="username"><br/>
-            职位&#12288查询<select>
-            <option name="userLevel">请选择</option>
-            <option name="userLevel" value="1">boos</option>
-            <option name="userLevel" value="2">管理</option>
-            <option name="userLevel" value="3">员工</option>
+            <font color="aqua">手机号查询</font><input type="text" name="userPhone"><br/>
+            <font color="aqua">姓名&#12288查询</font><input type="text" name="username"><br/>
+            <font color="aqua">职位&#12288查询</font><select name="userLevel">
+            <option  value="0">请选择</option>
+            <option  value="1">boos</option>
+            <option  value="2">管理</option>
+            <option  value="3">员工</option>
             </select><br/>
-            身份证号码<input type="text" name="idCard"><br/>
-            所在&#12288部门 <br/>
+            <font color="aqua">身份证号码</font><input type="text" name="idCard"><br/>
+            <font color="aqua">所在&#12288部门</font> <br/>
             <c:forEach items="${parentIdBM}" var="p">
-            ${p.baseName} <input type="checkbox" name="province" value="${p.id}" />
+            <font color="#00ffff">${p.baseName}</font> <input type="checkbox" name="province" value="${p.id}" />
             </c:forEach><br/><br/>
             <input type="button" value="查询" onclick="show()"><br/>
         </c:if>
 
+            <input type='button' value='修改个人信息' onclick='updateUser()'>
+
     </form>
     <table>
         <tr>
-            <td>用户ID</td>
-            <td>登录名称</td>
-            <td>密码</td>
-            <td>状态</td>
-            <td>注册时间</td>
-            <td>手机号码</td>
-            <td>身份证号码</td>
+            <td></td>
+            <td><font color="#7fffd4">登录名称</font></td>
+            <td><font color="#7fffd4">密码</font></td>
+            <td><font color="#7fffd4">状态</font></td>
+            <td><font color="#7fffd4">注册时间</font></td>
+            <td><font color="#7fffd4">手机号码</font></td>
+            <td><font color="#7fffd4">身份证号码</font></td>
         </tr>
         <tbody id="tbd"></tbody>
     </table>

@@ -18,6 +18,7 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/placeMe.js"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>\res\css\style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="<%=request.getContextPath()%>\res\css\fontawesome-all.css">
+    <script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer/layer.js"></script>
     <script type="text/javascript">
         //判断当前窗口路径与加载路径是否一致。
         if(window.top.document.URL != document.URL){
@@ -25,16 +26,22 @@
             window.top.location = document.URL;
         }
          function  login() {
+             var index = layer.load(2, {shade: 0.3});
                $.post(
                     "<%=request.getContextPath()%>/user/login",
                      $("#frm").serialize(),
                      function (result) {
-                        alert(result.code);
-                        if(result.code == 200) {
-                            location.href="/index/toIndex";
-                        } else {
-                            alert(result.msg);
-                        }
+                         layer.close(index);
+                         if(result.code != "200"){
+                             parent.layer.msg(result.msg, {icon: 5});
+                             return;
+                         }
+                         layer.msg('登录成功', {
+                             icon: 6,
+                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                         }, function(){
+                             parent.location.href="<%=request.getContextPath()%>/index/toIndex";
+                         });
                      }
                )
           }
@@ -55,7 +62,7 @@
     <canvas></canvas>
     <canvas></canvas>
 </div>
-<h1>欢迎来到用户管理系统</h1>
+<h1><font color="#ffd700">欢迎来到用户管理系统</font></h1>
 <div class="sub-main-w3">
     <form id="frm">
         <h2>Login Now
@@ -84,11 +91,11 @@
                     </label>
                 </li>
                 <li>
-                    <a href="#">Forgot Password?</a>
+                    <a href="#">点缀一下</a>
                 </li>
             </ul>
         </div>
-        <input type="submit" value="Log In" onclick="login()">
+        <input type="submit" value="登 录" onclick="login()">
     </form>
 </div>
 <div class="footer">

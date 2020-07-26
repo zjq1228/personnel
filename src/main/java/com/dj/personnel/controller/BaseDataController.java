@@ -3,11 +3,14 @@ package com.dj.personnel.controller;
 import com.dj.personnel.config.ResultModel;
 import com.dj.personnel.config.SysConstant;
 import com.dj.personnel.pojo.BaseData;
+import com.dj.personnel.pojo.User;
 import com.dj.personnel.service.BaseDataService;
+import com.dj.personnel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +25,9 @@ public class BaseDataController {
 
     @Autowired
     private BaseDataService baseDataService;
+
+    @Autowired
+    private UserService userService;
 
     /**
      * 展示
@@ -49,7 +55,9 @@ public class BaseDataController {
             return null;
         }
     }
-
+    /**
+     * 修改
+     */
     @RequestMapping("updateZtree")
     public ResultModel<Object> updateZtree(Integer id, String baseName) {
         Map<String, Object> map = new HashMap<>();
@@ -107,6 +115,30 @@ public class BaseDataController {
         Map<String, Object> map = new HashMap<>();
         try {
             baseDataService.addBase(baseData);
+            List<Integer> ids = new ArrayList<>();
+            List<Integer> ids1 = new ArrayList<>();
+            getIds2(baseData.getParentId(), ids);
+            getIds1(baseData.getParentId(), ids1);
+            User user = new User();
+            user.setUsername(baseData.getBaseName());
+            for (Integer i:ids1){
+                if (i == 2) {
+                    user.setUserLevel(2);
+                }else {
+                    user.setUserLevel(3);
+                }
+            }
+            user.setPassword("123");
+            user.setUserPhone("请绑定您的手机号码");
+            user.setStatus(1);
+            user.setIdCard("请绑定您的身份证");
+            user.setPId(baseData.getParentId());
+            for (Integer i:ids){
+                user.setProvince(i);
+            }
+            LocalDateTime now = LocalDateTime.now();
+            user.setCreateTime(now);
+            userService.save(user);
             map.put("code", "200");
             return map;
         } catch (Exception e) {
@@ -117,6 +149,33 @@ public class BaseDataController {
             return map;
         }
 
+    }
+    private void getIds2(Integer id, List<Integer> ids) throws Exception {
+        BaseData id1 = baseDataService.findBaseById(id);
+        if (id1 != null) {
+            BaseData id2 = baseDataService.findBaseById(id1.getParentId());
+            if (id2 != null) {
+                if(id2.getParentId() != 0){
+                    getIds(id2.getParentId(), ids);
+                }else {
+                    ids.add(id2.getId());
+                }
+
+            }else {
+                ids.add(id1.getId());
+            }
+        }
+    }
+    private void getIds1(Integer id, List<Integer> ids1) throws Exception {
+        BaseData id1 = baseDataService.findBaseById(id);
+        if (id1 != null) {
+            BaseData id2 = baseDataService.findBaseById(id1.getParentId());
+            if (id2 != null) {
+                ids1.add(3);
+            }else {
+                ids1.add(2);
+            }
+        }
     }
 
 

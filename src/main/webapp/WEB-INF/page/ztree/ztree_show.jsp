@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/res/ztree/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/res/ztree//demo.css" type="text/css">
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/ztree/jquery.ztree.all.min.js"></script>
+    <script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer/layer.js"></script>
 
     <script LANGUAGE="JavaScript">
         var setting = {
@@ -100,15 +101,14 @@
             sObj.after(addStr);
             var btn = $("#addBtn_"+treeNode.tId);
             if (btn) btn.bind("click", function(){
-                var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, baseName:"请编辑" + (newCount++)});
-                $.post("<%=request.getContextPath()%>/base/add",
-                    {"parentId" : treeNode.id},
-                    function(data){
-                        if(data.data.code != 200){
-                        }
-                    })
-                location.reload()
+                layer.open({
+                    type: 2,
+                    title: '添加信息',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['380px', '90%'],
+                    content: '<%=request.getContextPath()%>/base/toAdd?parentId='+treeNode.id //iframe的url
+                });
                 return false;
             });
         };
