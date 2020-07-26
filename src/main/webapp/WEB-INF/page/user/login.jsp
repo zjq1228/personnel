@@ -14,10 +14,7 @@
     <meta name="keywords" content=""
     />
     <title>Title</title>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/placeMe.js"></script>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>\res\css\style.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>\res\css\fontawesome-all.css">
+    <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.js"></script>
     <script type="text/javascript" src = "<%=request.getContextPath()%>/res/layer/layer.js"></script>
     <script type="text/javascript">
         //判断当前窗口路径与加载路径是否一致。
@@ -101,6 +98,5 @@
 <div class="footer">
     <p>Copyright &copy; 2018.Company name All rights reserved.</p>
 </div>
-<script src="<%=request.getContextPath()%>\res\js\canva_moving_effect.js"></script>
 </body>
 </html>
