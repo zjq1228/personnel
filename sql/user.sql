@@ -23,3 +23,6 @@ DROP COLUMN `id_card`,
 ADD COLUMN `id_card`  varchar(255) NULL AFTER `p_id`,
 ADD COLUMN `user_phone`  varchar(255) NULL AFTER `id_card`;
 
+#新增部门
+ALTER TABLE `user`
+ADD COLUMN `province`  varchar(255) NULL AFTER `user_phone`;

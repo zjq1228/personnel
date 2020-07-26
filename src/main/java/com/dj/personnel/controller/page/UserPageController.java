@@ -1,15 +1,24 @@
 package com.dj.personnel.controller.page;
 
+import com.dj.personnel.config.SysConstant;
+import com.dj.personnel.pojo.BaseData;
+import com.dj.personnel.service.BaseDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
 @RequestMapping("/user/")
 public class UserPageController {
+
+    @Autowired
+    private BaseDataService baseDataService;
 
     /**
      * 去登陆
@@ -27,7 +36,10 @@ public class UserPageController {
      * @return
      */
     @RequestMapping("toShow")
-    public String toShow() {
+    public String toShow(Model model, Integer id) throws Exception {
+        List<BaseData> parentIdBM = baseDataService.findBaseParentId(SysConstant.BASE_PARENTID_4);
+        model.addAttribute("id", id);
+        model.addAttribute("parentIdBM", parentIdBM);
         return "/user/show";
 
     }

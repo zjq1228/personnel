@@ -10,6 +10,7 @@
 <head>
     <title>Title</title>
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>\res\css\jq22-demo.css">
     <script type="text/javascript">
         function add() {
             $.post(
@@ -31,9 +32,9 @@
                 if(data.code == 200){
                     var parentIdBM = data.data;
                     var parentHtml = "";
+                    parentHtml += " <option>请选择</option>"
                     for (var i = 0; i < parentIdBM.length; i++){
                         var parentOne= parentIdBM[i];
-                        parentHtml += " <option>请选择</option>"
                         parentHtml += " <option value='"+parentOne.id+"'>"+parentOne.baseName+"</option>"
 
                     }
@@ -52,6 +53,7 @@
                     if(data.code == 200){
                         var parentIdBM = data.data;
                         var parentHtml = "";
+                        parentHtml += " <option>请选择</option>"
                         for (var i = 0; i < parentIdBM.length; i++){
                             var parentOne= parentIdBM[i];
                             parentHtml += " <option value='"+parentOne.id+"'>"+parentOne.baseName+"</option>"
@@ -59,6 +61,7 @@
                         $("#rs").html(parentHtml);
                     }
                 })
+            $("#bumen").val(parentId);
         }
         function level3(parentId) {
             $("#num").val(parentId);
@@ -66,46 +69,50 @@
 
     </script>
 </head>
-<body>
+<body style="text-align: center" bgcolor="white">
     <form id="frm">
         <table>
             <tr>
-                <td>用户名</td>
+                <td><font color="red">用户名</font></td>
                 <td><input type="text" name="username"></td>
             </tr>
             <tr>
-                <td>密码</td>
+                <td><font color="red">密码</font></td>
                 <td><input type="text" name="password"></td>
             </tr>
             <tr>
-                <td>状态</td>
+                <td><font color="red">状态</font></td>
                 <td><input type="radio" name="status" value="1" checked="checked">有效</td>
             </tr>
             <tr>
-                <td>手机号码</td>
+                <td><font color="red">手机号码</font></td>
                 <td><input type="text" name="userPhone"></td>
             </tr>
             <tr>
-                <td>身份证号码</td>
+                <td><font color="red">身份证号码</font></td>
                 <td><input type="text" name="idCard"></td>
             </tr>
             <tr>
-                <td><input type="hidden" name="userLevel" value="3"></td>
+                <td><font color="red"><input type="hidden" name="userLevel" value="3"></td>
             </tr>
             <tr>
-                <td>选择部门及上级</td>
+                <td><font color="red">选择部门及上级</font></td>
                 <td> 部门<select id = "bm" onchange="level2(this.value)">
+
                 </select>
                      人事<select id = "rs" onchange="level3(this.value)">
-                        <option>请选择</option>
                     </select></td>
                 <td><input type="hidden" name="pId" id="num"></td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="province" id="bumen"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="button" value="添加" onclick="add()"></td>
             </tr>
         </table>
     </form>
-
+    <span class="container"></span>
+    <script src="<%=request.getContextPath()%>\res\js\snowflakeCursor.js" type="text/javascript"></script>
 </body>
 </html>

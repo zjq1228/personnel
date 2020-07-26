@@ -459,7 +459,7 @@
 	});
 
 </script>
-<body style="text-align: center" bgcolor="#CCDDFF">
+<body style="text-align: center" bgcolor="white">
 
 <span class="container"></span>
 

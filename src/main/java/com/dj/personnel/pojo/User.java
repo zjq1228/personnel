@@ -64,4 +64,10 @@ public class User {
      * 身份证号码
      */
     private String idCard;
+    /**
+     * 部门
+     */
+    private Integer province;
+
+    private Integer[] ids;
 }

@@ -7,6 +7,7 @@ import com.dj.personnel.pojo.User;
 import com.dj.personnel.service.BaseDataService;
 import com.dj.personnel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -57,12 +58,11 @@ public class UserController {
                 return new ResultModel().error("用户名密码不能为空");
             }
             User user1 = userService.findUserByNameAndPwd(user);
-            System.out.println(user1);
             session.setAttribute("user", user1);
             if (null == user1) {
                 return new ResultModel().error("用户名或密码错误");
             }
-            return new ResultModel().success("登录成功");
+            return new ResultModel().success();
         } catch (Exception e) {
             return new ResultModel().error("服务器异常,请稍后再试");
         }
@@ -76,12 +76,10 @@ public class UserController {
      * @return
      */
     @RequestMapping("show")
-    public ResultModel show(@SessionAttribute("user")User user) {
+    public ResultModel show(User user1, Integer id) {
         try {
-            List<User> list = userService.findLevelShow(user);
-            for (User user1 : list){
-                System.out.println(user1);
-            }
+            User user = userService.getById(id);
+            List<User> list = userService.findLevelShow(user, user1);
             return new ResultModel().success(list);
         } catch (Exception e) {
             return new ResultModel().error(e.getMessage());

@@ -32,20 +32,20 @@
 		})
 	</script>
 </head>
-<body style="text-align: center"  bgcolor="gray">
+<body style="text-align: center"  bgcolor="white">
 <span class="container"></span>
 <div class="subNavBox">
 	<div class="subNav currentDd currentDt">用户中心</div>
 	<ul class="navContent " style="display:block">
 		<li><a href="<%=request.getContextPath()%>/user/toShow" target="right">&#12288&#12288&#12288&#12288用户展示</a></li>
-		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
-		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
+		<li><a href="<%=request.getContextPath()%>/user/toAdd" target="right">&#12288&#12288&#12288&#12288用户增加</a></li>
+		<li><a href="<%=request.getContextPath()%>/base/toShow" target="right">&#12288&#12288&#12288&#12288职员概览</a></li>
 		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
 	</ul>
 	<div class="subNav">部门中心</div>
 	<ul class="navContent">
-		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
-		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
+		<li><a href="#">&#12288&#12288&#12288&#12288部门增加</a></li>
+		<li><a href="#">&#12288&#12288&#12288&#12288部门展示</a></li>
 		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
 		<li><a href="#">&#12288&#12288&#12288&#12288添加连接</a></li>
 	</ul>

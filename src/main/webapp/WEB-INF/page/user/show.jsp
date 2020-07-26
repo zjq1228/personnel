@@ -13,49 +13,69 @@
     <script type="text/javascript" src="<%=request.getContextPath()%>/res/js/jquery-1.12.4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>\res\css\jq22-demo.css">
     <script type="text/javascript">
+
+        var province = null;
+        function selec() {
+            province= $('input[name="province"]:checked');
+            var pid=[];
+            $.each(province,function(){
+                pid.push($(this).val());
+            })
+            return pid;
+        }
+
         $(function () {
-            $.post(
-                "/user/show",
-                {"id" : '${user.id}'},
-                function (result) {
-                    var users = result.data;
-                    var html = "";
-                    for (var i=0;i<users.length;i++){
-                        var user = users[i];
-                        html += "<tr>";
-                        html += "<td>"+user.id+"</td>";
-                        html += "<td>"+user.username+"</td>";
-                        html += "<td>"+user.password+"</td>";
-                        html += "<td>"+user.status+"</td>";
-                        html += "<td>"+user.createTime+"</td>";
-                        html += "<td>"+user.userPhone+"</td>";
-                        html += "<td>"+user.idCard+"</td>";
-                        html += "</tr>";
-                    }
-                    $("#tbd").html(html);
-                }
-            );
+           show();
         })
 
-        function add() {
-            window.location.href = "/user/toAdd";
-        }
+       function show(){
+           $.post(
+               "/user/show?id="+${user.id},
+
+               $("#fm").serialize(),
+               function (result) {
+                   var users = result.data;
+                   var html = "";
+                   for (var i=0;i<users.length;i++){
+                       var user = users[i];
+                       html += "<tr>";
+                       html += "<td>"+user.id+"</td>";
+                       html += "<td>"+user.username+"</td>";
+                       html += "<td>"+user.password+"</td>";
+                       html += "<td>"+user.status+"</td>";
+                       html += "<td>"+user.createTime+"</td>";
+                       html += "<td>"+user.userPhone+"</td>";
+                       html += "<td>"+user.idCard+"</td>";
+                       html += "</tr>";
+                   }
+                   $("#tbd").html(html);
+               })
+
+       };
+
+
+
     </script>
 </head>
 <body>
-    <form id="frm">
-        <input type="button" value="添加" onclick="add()"><br/><br/>
+    <form id="fm">
+        <input type="hidden" name="id" value="${user.id}">
+        <input type="hidden" name="ids" value="">
         <c:if test="${user.userLevel == 1}">
             手机号查询<input type="text" name="userPhone"><br/>
             姓名&#12288查询<input type="text" name="username"><br/>
             职位&#12288查询<select>
-            <option>总经理</option>
-            <option>经理</option>
-            <option>主管</option>
-            <option>员工</option>
+            <option name="userLevel">请选择</option>
+            <option name="userLevel" value="1">boos</option>
+            <option name="userLevel" value="2">管理</option>
+            <option name="userLevel" value="3">员工</option>
             </select><br/>
             身份证号码<input type="text" name="idCard"><br/>
-            所在&#12288部门<input type="text" name="idCard"><br/>
+            所在&#12288部门 <br/>
+            <c:forEach items="${parentIdBM}" var="p">
+            ${p.baseName} <input type="checkbox" name="province" value="${p.id}" />
+            </c:forEach><br/><br/>
+            <input type="button" value="查询" onclick="show()"><br/>
         </c:if>
 
     </form>

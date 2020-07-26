@@ -101,14 +101,14 @@
             var btn = $("#addBtn_"+treeNode.tId);
             if (btn) btn.bind("click", function(){
                 var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, baseName:"请编辑" + (newCount++)});
                 $.post("<%=request.getContextPath()%>/base/add",
                     {"parentId" : treeNode.id},
                     function(data){
                         if(data.data.code != 200){
                         }
                     })
-                parent.location.reload()
+                location.reload()
                 return false;
             });
         };
@@ -128,9 +128,9 @@
 <body>
 
 
-    <div class="zTreeDemoBackground left">
-        <ul id="treeDemo" class="ztree"></ul>
-    </div>
+
+        <div id="treeDemo" class="ztree"></div>
+
 
 
 
