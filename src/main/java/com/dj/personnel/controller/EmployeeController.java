@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 员工
@@ -49,6 +46,7 @@ public class EmployeeController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 新增
      *
@@ -58,6 +56,7 @@ public class EmployeeController {
     @PostMapping
     public ResultModel save(Employee employee) {
         try {
+            employee.setCreateTime(new Date());
             employeeService.save(employee);
             return new ResultModel().success(employee);
         } catch (Exception e) {
@@ -68,6 +67,7 @@ public class EmployeeController {
 
     /**
      * 注册去重
+     *
      * @param employee
      * @return
      */
@@ -76,29 +76,31 @@ public class EmployeeController {
         try {
             QueryWrapper<Employee> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("name", employee.getName());
-           Employee findEmployeeByName = employeeService.getOne(queryWrapper);
+            Employee findEmployeeByName = employeeService.getOne(queryWrapper);
             return findEmployeeByName == null ? true : false;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
     /**
      * 修改用户信息
      *
      * @param employee 用户信息
      * @return
-     * @URL PUT /users
      */
     @RequestMapping("update")
     public ResultModel update(Employee employee) {
         try {
+            employee.setCreateTime(new Date());
             return new ResultModel().success(employeeService.updateById(employee));
         } catch (Exception e) {
             e.printStackTrace();
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
      * 删除职位
      *
@@ -106,7 +108,6 @@ public class EmployeeController {
      * @return
      * @URL DELETE /user/id
      */
-    //@DeleteMapping
     @RequestMapping("deleteEmployee")
     public ResultModel deleteEmployee(Integer[] ids) {
         try {

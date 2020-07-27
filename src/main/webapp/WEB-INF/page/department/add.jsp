@@ -38,7 +38,7 @@
 								time: 2000 //2秒关闭（如果不配置，默认是3秒）
 							}, function(){
 								layer.close(index);
-								parent.window.location.href="<%=request.getContextPath()%>/department/toShow";
+								parent.window.location.href="<%=request.getContextPath()%>/index/toIndex";
 							});
 
 						})
@@ -117,8 +117,9 @@
 			</td>
 		</tr>
 	</table>
+	<input type="submit" value="添加" />
 </form>
 <div style="height: 10px;"></div>
-<input type="submit" value="添加" />
+
 </body>
 </html>

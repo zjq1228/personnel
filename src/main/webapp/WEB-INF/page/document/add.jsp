@@ -42,7 +42,7 @@
 					layer.close(index);
 					layer.msg('data.msg', {icon: 6, time: 2000},
 							function(){
-								location.href = "<%=request.getContextPath()%>/document/toShow";
+							parent.location.href = "<%=request.getContextPath()%>/index/toIndex";
 					});
 				})
 			}

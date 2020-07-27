@@ -52,6 +52,7 @@ public class JobController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 新增
      *
@@ -71,6 +72,7 @@ public class JobController {
 
     /**
      * 注册去重
+     *
      * @param job
      * @return
      */
@@ -86,12 +88,12 @@ public class JobController {
         }
         return null;
     }
+
     /**
      * 修改用户信息
      *
-     * @param job 用户信息
+     * @param job
      * @return
-     * @URL PUT /users
      */
     @RequestMapping("update")
     public ResultModel update(Job job) {
@@ -106,9 +108,8 @@ public class JobController {
     /**
      * 删除职位
      *
-     * @param ids 用户ID
+     * @param ids
      * @return
-     * @URL DELETE /user/id
      */
     @RequestMapping("deleteJob")
     public ResultModel deleteJob(Integer[] ids) {

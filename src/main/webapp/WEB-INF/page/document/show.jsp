@@ -53,7 +53,8 @@
                         html += "<td>" + u.remark + "</td>"
                         html += "<td>" + u.createTime + "</td>"
                         html += "<td><input type='button' value='修改' onclick='upd(" + u.id + ")' /></td>"
-                        html += "<td><input type='button' value='下载' onclick='xiazai(" + u.id + ")' /></td>"
+                        // html += "<td><input type='button' value='下载' onclick='xiazai(" + u.id + ")' /></td>"
+                        html += "<td><a href='<%=request.getContextPath()%>/document/download?id="+u.id+"'>下载</a></td>"
                         html += "</tr>";
                     }
                     $("#tbd").html(html);

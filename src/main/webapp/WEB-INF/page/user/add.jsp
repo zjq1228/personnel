@@ -24,7 +24,6 @@
 	$.validator.setDefaults({
 		submitHandler: function() {
 			var index = layer.load(1,{shade:0.3});
-			alert("111")
 			$.post("<%=request.getContextPath()%>/user/",
 					$("#fm").serialize(),
 					function(data){
@@ -38,7 +37,7 @@
 							time: 2000 //2秒关闭（如果不配置，默认是3秒）
 						}, function(){
 							layer.close(index);
-							parent.window.location.href="<%=request.getContextPath()%>/user/toShow";
+							parent.window.location.href="<%=request.getContextPath()%>/index/toIndex";
 						});
 
 					})
@@ -69,25 +68,25 @@
 							}
 						}
 					}
-				}/*,
+				},
 				password : {
 					required:true,
 				},
 				status : {
 					required:true,
-				}*/
+				}
 			},
 			messages:{
 				username : {
 					required:"请输入用户名",
 					remote: "用户名已存在"
-				}/*,
+				},
 				password : {
 					required:"请输入密码"
 				},
 				status : {
 					required:"请选择状态"
-				}*/
+				}
 			}
 		})
 	})
@@ -133,9 +132,11 @@
 			</table>
 		</td>
 	</tr>
+
 </table>
+	<input type="submit" value="添加" />
 </form>
 <div style="height: 10px;"></div>
-<input type="submit" value="添加" />
+
 </body>
 </html>

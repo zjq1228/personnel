@@ -53,6 +53,7 @@ public class DepartmentController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 新增
      *
@@ -72,6 +73,7 @@ public class DepartmentController {
 
     /**
      * 注册去重
+     *
      * @param department
      * @return
      */
@@ -87,6 +89,7 @@ public class DepartmentController {
         }
         return null;
     }
+
     /**
      * 修改部门信息
      *
@@ -102,6 +105,7 @@ public class DepartmentController {
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
      * 删除职位
      *

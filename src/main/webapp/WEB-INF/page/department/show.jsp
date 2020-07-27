@@ -43,7 +43,6 @@
                     }
                     var html = "";
                     var pageHtml = "";
-                    alert(data.data.list.length);
                     for (var i = 0; i < data.data.list.length; i++) {
                         var u = data.data.list[i];
                         html += "<tr>";
@@ -53,7 +52,6 @@
                         html += "<td><input type='button' value='修改' onclick='upd(" + u.id + ")' /></td>"
                         html += "</tr>";
                     }
-                    alert(html);
                     $("#tbd").html(html);
                     pageHtml += "<input type = 'button' value='上一页' onclick='page(0, " + data.data.pages + ")'/>";
                     if (data.data.pages == 0) {
@@ -99,16 +97,16 @@
         function del() {
             selectedValue();
             var index = layer.load(0, {shade: 0.3}, {time: 10 * 1000});
-            $.post("<%=request.getContextPath()%>/department/deleteUser",
+            $.post("<%=request.getContextPath()%>/department/deleteDepartment",
                 {"ids": $("#ids").val()},//,"_method": "delete"
                 function (data) {
-                    layer.close(index);
                     if (data.code == "200") {
                         layer.msg(data.msg,
                             {icon: 6, time: 2000},
                             function () {
                                 window.location.href = "<%=request.getContextPath()%>/department/toShow"
                             });
+                        layer.close(index);
                         return;
                     }
                     layer.msg(data.msg);

@@ -47,7 +47,7 @@ public class DocumentController {
             //当前页，每页条数
             IPage iPage = new Page(UserQuery.getPageNo(), UserQuery.getPageSize());
             QueryWrapper<Document> queryWrapper = new QueryWrapper<>();
-            if (!UserQuery.getTitle().isEmpty()&& !"".equals(UserQuery.getTitle())) {
+            if (!UserQuery.getTitle().isEmpty() && !"".equals(UserQuery.getTitle())) {
                 queryWrapper.like("title", UserQuery.getTitle());
             }
             IPage pageInfo = documentService.page(iPage, queryWrapper);
@@ -59,6 +59,7 @@ public class DocumentController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 新增
      *
@@ -66,9 +67,9 @@ public class DocumentController {
      * @return
      */
     @PostMapping
-    public ResultModel save(Document document, @SessionAttribute("user") User user) {
+    public ResultModel save(Document document) {
         try {
-            document.setUsername(user.getUsername());
+
             documentService.save(document);
             return new ResultModel().success(document);
         } catch (Exception e) {
@@ -76,8 +77,10 @@ public class DocumentController {
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
      * 注册去重
+     *
      * @param document
      * @return
      */
@@ -93,6 +96,7 @@ public class DocumentController {
         }
         return null;
     }
+
     /**
      * 修改用户信息
      *
@@ -109,8 +113,8 @@ public class DocumentController {
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
-     * 
      * 删除职位
      *
      * @param ids 用户ID
@@ -156,9 +160,10 @@ public class DocumentController {
                     f.mkdirs();
                 }
                 file.transferTo(new File(dirpath + newFileName));
-                document.setUserId(user.getId());
                 // 设置名字
                 document.setFileName(newFileName);
+                document.setUsername(user.getUsername());
+                System.out.println(user.getUsername());
                 documentService.save(document);
                 return new ResultModel().success(true);
             }
@@ -169,33 +174,5 @@ public class DocumentController {
         }
     }
 
-    /**
-     * 文件下载
-     * @param id
-     * @param response
-     */
-    @RequestMapping("download")
-    public String download(Integer id, HttpServletResponse response) {
-        try {
-            Document document = documentService.getById(id);
-            // 设置UTF-8格式
-            response.setHeader("content-disposition", "attachment;filename" + URLEncoder.encode(document.getFileName(), "utf-8"));
-            // 将服务器上的文件夹读取到JAVA程序里，InputStream
-            InputStream input = new FileInputStream("E:/upload/" + document.getFileName());
-            // 将读取到的内容响应给用户，使用response可以响应到用户看到的地方=游览器
-            OutputStream stream = response.getOutputStream();
-            // 缓解程序的压力 4096
-            byte[] buffer = new byte[4096];
-            while ((input.read(buffer)) > 0) {
-                stream.write(buffer);
-            }
-            input.close();
-            stream.close();
-            return "200";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "500";
-        }
-    }
 
 }

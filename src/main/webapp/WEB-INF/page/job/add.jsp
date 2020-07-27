@@ -36,7 +36,7 @@ res<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding=
 							time: 2000 //2秒关闭（如果不配置，默认是3秒）
 						}, function(){
 							layer.close(index);
-							parent.window.location.href="<%=request.getContextPath()%>/job/toShow";
+							parent.window.location.href="<%=request.getContextPath()%>/index/toIndex";
 						});
 
 					})
@@ -101,6 +101,7 @@ res<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding=
 	</tr>
 </table>
 <form id = "fm">
+
 	<table width="100%" border="0" cellpadding="0" cellspacing="10" class="main_tab">
 		<tr>
 			<td class="font3 fftd">
@@ -113,8 +114,9 @@ res<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding=
 			</td>
 		</tr>
 	</table>
+	<input type="submit" value="添加" />
+
 </form>
 <div style="height: 10px;"></div>
-<input type="submit" value="添加" />
 </body>
 </html>

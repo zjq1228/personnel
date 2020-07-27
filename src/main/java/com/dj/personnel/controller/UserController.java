@@ -51,6 +51,7 @@ public class UserController {
             return new ResultModel<>().error(e.getMessage());
         }
     }
+
     /**
      * 新增
      *
@@ -67,8 +68,10 @@ public class UserController {
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
      * 注册去重
+     *
      * @param user
      * @return
      */
@@ -83,7 +86,6 @@ public class UserController {
             e.printStackTrace();
         }
         return null;
-
     }
 
     /**
@@ -114,6 +116,7 @@ public class UserController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 修改用户信息
      *
@@ -150,6 +153,5 @@ public class UserController {
             return new ResultModel().error(e.getMessage());
         }
     }
-
 }
 

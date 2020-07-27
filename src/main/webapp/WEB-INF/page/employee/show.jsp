@@ -152,7 +152,7 @@
                         <form name="empform" method="post" id="empform" action="${pagePath}/employee/show">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td class="font3">职位： <select name="job_id" style="width: 143px;">
+                                    <td class="font3">职位： <select name="jobId" style="width: 143px;">
                                         <option value="">--请选择职位--</option>
                                         <option value="1">职员</option>
                                         <option value="2">Java开发工程师</option>
@@ -186,7 +186,7 @@
                                             <option value="0" selected="selected">女</option>
                                         </c:if>
                                     </select> 手机：<input type="text" name="mobile" /> &nbsp;所属部门：<select name="departmentId" style="width: 100px;">
-                                        <option value="">--部门选择--</option>
+                                        <option value="">--请选择部门--</option>
                                         <option value="1">技术部</option>
                                         <option value="2">运营部</option>
                                         <option value="3">财务部</option>

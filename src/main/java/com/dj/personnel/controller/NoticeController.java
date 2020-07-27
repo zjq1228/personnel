@@ -43,7 +43,7 @@ public class NoticeController {
             //当前页，每页条数
             IPage iPage = new Page(UserQuery.getPageNo(), UserQuery.getPageSize());
             QueryWrapper<Notice> queryWrapper = new QueryWrapper<>();
-            if (!UserQuery.getTitle().isEmpty()&& !"".equals(UserQuery.getTitle())) {
+            if (!UserQuery.getTitle().isEmpty() && !"".equals(UserQuery.getTitle())) {
                 queryWrapper.like("title", UserQuery.getTitle());
             }
             IPage pageInfo = noticeService.page(iPage, queryWrapper);
@@ -55,6 +55,7 @@ public class NoticeController {
             return new ResultModel().error("服务器异常，请稍后再试");
         }
     }
+
     /**
      * 新增
      *
@@ -75,6 +76,7 @@ public class NoticeController {
 
     /**
      * 注册去重
+     *
      * @param notice
      * @return
      */
@@ -90,12 +92,12 @@ public class NoticeController {
         }
         return null;
     }
+
     /**
      * 修改用户信息
      *
-     * @param notice 用户信息
+     * @param notice
      * @return
-     * @URL PUT /users
      */
     @RequestMapping("update")
     public ResultModel update(Notice notice) {
@@ -107,12 +109,12 @@ public class NoticeController {
             return new ResultModel().error(e.getMessage());
         }
     }
+
     /**
      * 删除职位
      *
-     * @param ids 用户ID
+     * @param ids
      * @return
-     * @URL DELETE /user/id
      */
     @RequestMapping("deleteNotice")
     public ResultModel deleteNotice(Integer[] ids) {
